@@ -45,12 +45,16 @@ export const GifsApp = () => {
                 setDataHistorial([textClean, ...dataHistorial])
             }
 
+            const gifs = await getGifByQuery(query, typeSearch)
+
+
+            setGifStickers(gifs)
 
         }
 
-        const gifs = await getGifByQuery(query, typeSearch)
 
-        setGifStickers(gifs)
+
+
 
 
 
