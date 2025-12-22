@@ -137,6 +137,43 @@ h1 {
   border-radius: 10px;
 }
 
+
+.conteiner-type-search {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem 0;
+}
+
+.conteiner-gif {
+  padding: 0 1rem;
+}
+
+.conteiner-null {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 3rem 0;
+}
+
+.btn-descargar {
+  width: 10rem;
+  height: 2rem;
+  border-radius: .5rem;
+  color: white;
+  background-image: linear-gradient(rgb(219, 119, 250), rgb(201, 5, 201));
+  border: none;
+  transition: all;
+}
+
+.btn-descargar:hover {
+
+  border: solid 3px purple;
+  cursor: pointer;
+  transform: scale(1.1);
+  font-weight: 900;
+}
+
 @media (min-width: 768px) {
   .gifs-container {
     grid-template-columns: repeat(3, 1fr);

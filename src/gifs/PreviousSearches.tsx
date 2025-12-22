@@ -2,13 +2,14 @@
 interface Props {
     title: string,
     data?: string[]
+    onLableClick: (item: string) => void;
 }
 
 
-const dataDefaul = ['default', 'saitama', 'vegeta']
 
 
-export const PreviousSearches = ({ title, data = dataDefaul }: Props) => {
+
+export const PreviousSearches = ({ title, data, onLableClick }: Props) => {
     return (
         <div className="previous-searches">
             <h2>{title}</h2>
@@ -17,7 +18,7 @@ export const PreviousSearches = ({ title, data = dataDefaul }: Props) => {
                 data && (
                     <ul className="previous-searches-list">
                         {data.map((item) => (
-                            <li key={item} > {item} </li>
+                            <li onClick={() => onLableClick(item)} key={item} > {item} </li>
                         ))}
 
                     </ul>

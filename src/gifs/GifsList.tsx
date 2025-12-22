@@ -14,6 +14,15 @@ interface Props {
 
 
 export const GifsList = ({ gifs }: Props) => {
+
+
+
+    const descargarGIF = (url: string) => {
+
+
+        window.open(url, '_blank');
+    }
+
     return (
         <div className="gifs-container">
 
@@ -25,6 +34,7 @@ export const GifsList = ({ gifs }: Props) => {
                         <p>
                             {gif.width} X {gif.height} (1.5mb)
                         </p>
+                        <button className="btn-descargar" onClick={() => { descargarGIF(gif.url) }}>Descargar</button>
                     </div>
                 ))
             }
