@@ -1,11 +1,8 @@
-import { useEffect, useState } from "react"
 import { GifsList } from "./gifs/GifsList"
 import { PreviousSearches } from "./gifs/PreviousSearches"
-import { mockGifs } from "./mocks-data/gifs.mock"
 import { CustomHeader } from "./shared/components/CustomHeader"
 import { SearchBar } from "./shared/components/SearchBar"
-import { getGifByQuery } from "./gifs/actions/get-gifs-by-query.action"
-import type { Gif } from "./gifs/interfaces/gif.interface"
+import useGifs from "./gifs/hooks/useGifs"
 
 
 
@@ -15,53 +12,9 @@ import type { Gif } from "./gifs/interfaces/gif.interface"
 export const GifsApp = () => {
 
 
-    const [dataHistorial, setDataHistorial] = useState<string[]>([])
-
-    const [typeSearch, setTypeSearch] = useState('gifs')
-
-    const [gifStickers, setGifStickers] = useState<Gif[]>([])
 
 
-    const handleOnLabelClick = (item: string) => {
-        console.log(item);
-
-    }
-
-    const onChangeRadio = (e: React.ChangeEvent<HTMLInputElement>) => {
-        console.log(e.target.value);
-        setTypeSearch(e.target.value)
-
-    }
-
-    const handleSearch = async (query: string) => {
-        if (query) {
-            let textClean = query.trim().toLowerCase()
-
-            if (dataHistorial?.includes(textClean)) {
-                return
-            }
-
-            if (dataHistorial && dataHistorial.length < 8) {
-                setDataHistorial([textClean, ...dataHistorial])
-            }
-
-            const gifs = await getGifByQuery(query, typeSearch)
-
-
-            setGifStickers(gifs)
-
-        }
-
-
-
-
-
-
-
-
-
-
-    }
+    const { typeSearch, onChangeRadio, handleOnLabelClick, gifStickers, handleSearch, dataHistorial } = useGifs()
 
 
     return (
