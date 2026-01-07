@@ -1,10 +1,10 @@
-import { useState } from "react"
+import { useRef, useState } from "react"
 import type { Gif } from "../interfaces/gif.interface"
 import { getGifByQuery } from "../actions/get-gifs-by-query.action"
 
 
 
-const gifsCache: Record<string, Gif[]> = {}
+// const gifsCache: Record<string, Gif[]> = {}
 
 const useGifs = () => {
 
@@ -15,12 +15,14 @@ const useGifs = () => {
 
     const [gifStickers, setGifStickers] = useState<Gif[]>([])
 
+    const gifsCache = useRef<Record<string, Gif[]>>({})
+
 
     const handleOnLabelClick = async (item: string) => {
 
-        if (gifsCache[item]) {
+        if (gifsCache.current[item]) {
 
-            setGifStickers(gifsCache[item])
+            setGifStickers(gifsCache.current[item])
             return;
         }
 
@@ -54,17 +56,9 @@ const useGifs = () => {
 
 
             setGifStickers(gifs)
-            gifsCache[query] = gifs
+            gifsCache.current[query] = gifs
 
         }
-
-
-
-
-
-
-
-
 
 
     }
